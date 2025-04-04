@@ -3,6 +3,7 @@
   "displayName": "hjson-painless",
   "description": "support coloring of hjson files with multiline blocks of painless code",
   "version": "0.0.1",
+  "publisher": "nbossard",
   "repository": {
     "type": "git",
     "url": "https://github.com/nbossard/hjson-painless.git"
