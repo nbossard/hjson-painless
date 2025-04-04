@@ -1,0 +1,181 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "HJSON",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#multiline-painless"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#constants"
+    },
+    {
+      "include": "#objects"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "match": "#.*$",
+          "name": "comment.line.number-sign.hjson"
+        },
+        {
+          "begin": "//",
+          "end": "$",
+          "name": "comment.line.double-slash.hjson"
+        },
+        {
+          "begin": "/\\*",
+          "end": "\\*/",
+          "name": "comment.block.hjson"
+        }
+      ]
+    },
+    "multiline-painless": {
+      "begin": "'''",
+      "end": "'''",
+      "patterns": [
+        {
+          "include": "#painless-keywords"
+        },
+        {
+          "include": "#painless-strings"
+        },
+        {
+          "include": "#painless-numbers"
+        },
+        {
+          "include": "#painless-comments"
+        }
+      ]
+    },
+    "painless-keywords": {
+      "patterns": [
+        {
+          "match": "\\b(if|else|while|do|for|break|continue|return|try|catch|finally|throw|new|instanceof|this|void|class|interface|extends|implements|public|protected|private|static|final|abstract|synchronized)\\b",
+          "name": "keyword.control.painless"
+        },
+        {
+          "match": "\\b(boolean|byte|char|double|float|int|long|short|String|def)\\b",
+          "name": "storage.type.painless"
+        }
+      ]
+    },
+    "painless-strings": {
+      "patterns": [
+        {
+          "begin": "\"",
+          "end": "\"",
+          "name": "string.quoted.double.painless",
+          "patterns": [
+            {
+              "match": "\\\\.",
+              "name": "constant.character.escape.painless"
+            }
+          ]
+        }
+      ]
+    },
+    "painless-numbers": {
+      "patterns": [
+        {
+          "match": "\\b\\d+(\\.\\d+)?([eE][+-]?\\d+)?[LlFfDd]?\\b",
+          "name": "constant.numeric.painless"
+        }
+      ]
+    },
+    "painless-comments": {
+      "patterns": [
+        {
+          "match": "//.*$",
+          "name": "comment.line.double-slash.painless"
+        },
+        {
+          "begin": "/\\*",
+          "end": "\\*/",
+          "name": "comment.block.painless"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "match": "\"([^\"]*)\": ?",
+          "captures": {
+            "1": { "name": "entity.name.tag.hjson" }
+          }
+        },
+        {
+          "begin": "\": \"",
+          "end": "\"",
+          "name": "string.quoted.double.hjson",
+          "patterns": [
+            {
+              "match": "\\\\.",
+              "name": "constant.character.escape.hjson"
+            }
+          ]
+        },
+        {
+          "begin": "': '",
+          "end": "'",
+          "name": "string.quoted.single.hjson"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "match": "-?\\d+(\\.\\d+)?([eE][+-]?\\d+)?",
+          "name": "constant.numeric.hjson"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "match": "\\b(true|false|null)\\b",
+          "name": "constant.language.hjson"
+        }
+      ]
+    },
+    "objects": {
+      "patterns": [
+        {
+          "match": "\"([^\"]+)\"\\s*:\\s*(\"[^\"]+\")?",
+          "captures": {
+            "1": {
+              "name": "variable.object.property.hjson" 
+            },
+            "2": {
+              "name": "string.value.hjson"             
+            }
+          },
+          "name": "punctuation.definition.string.hjson" 
+        },
+        {
+          "match": "([A-Za-z][A-Za-z0-9_]*)\\s*:\\s*(\"[^\"]+\")?",
+          "captures": {
+            "1": {
+              "name": "variable.object.property.hjson"
+            },
+            "2": {
+              "name": "string.value.hjson"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "scopeName": "source.hjson"
+}
+

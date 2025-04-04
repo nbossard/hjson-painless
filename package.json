@@ -1,0 +1,29 @@
+{
+  "name": "hjson-painless",
+  "displayName": "hjson-painless",
+  "description": "support coloring of hjson files with multiline blocks of painless code",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nbossard/hjson-painless.git"
+  },
+  "engines": {
+    "vscode": "^1.88.1"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "hjson",
+      "aliases": ["hjson-painless", "hjson"],
+      "extensions": [".hjson"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "hjson",
+      "scopeName": "source.hjson",
+      "path": "./syntaxes/language-hjson.tmlanguage.json"
+    }]
+  }
+}
